@@ -87,7 +87,7 @@ def get_similar_genres(input_genre=None, genre_file_path="genres.txt"):
     return filtered_genres
 
 
-def search_songs(sp, seed_words, genres=None, min_length=20, randomness=0.1):
+def search_songs(sp, seed_words, genres=None, length=20, randomness=0.1):
     """
     Searches for tracks on Spotify based on keywords and genres, ensuring uniqueness,
     slight randomness, and a minimum playlist length. Filters tracks with popularity > 50.
@@ -164,23 +164,3 @@ def save_tracks(sp, track_ids, playlist_name="Randomized Playlist"):
         print(f"Added {len(track_ids)} tracks to playlist '{playlist_name}'.")
     except Exception as e:
         print(f"Error saving playlist: {e}")
-
-
-# Example usage
-if __name__ == "__main__":
-    user_keywords = ["summer", "beach"]
-    user_genre = input("Enter a genre (or leave empty for no restriction): ").strip()
-
-    try:
-        # Fetch similar genres or allow no genre restriction
-        filtered_genres = get_similar_genres(user_genre if user_genre else None)
-        print(f"Filtered genres: {filtered_genres if filtered_genres else 'No genre restriction'}")
-
-        # Fetch unique tracks based on keywords and genres
-        tracks = search_songs(sp, user_keywords, genres=filtered_genres, min_length=20)
-        print(f"Fetched {len(tracks)} unique tracks.")
-
-        # Create a playlist with the fetched tracks
-        save_tracks(sp, tracks)
-    except ValueError as e:
-        print(e)
