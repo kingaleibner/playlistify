@@ -4,6 +4,7 @@ app = Flask(__name__)
 
 @app.route("/home")
 
+
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -15,10 +16,6 @@ def preset():
 @app.route("/create")
 def create():
     return render_template("create.html") 
-
-@app.route("/custom1")
-def custom1():
-    return render_template("custom1.html") 
 
 @app.route('/create_playlist', methods=['POST'])
 def create_playlist():
