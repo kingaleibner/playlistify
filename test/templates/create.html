@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+</head>
+<header>
+    <div class="grid-container2"></div>
+
+<h1>Create Your Playlist</h1>
+<form action="/create_playlist" method="POST">
+    <label for="keywords">Keywords (comma-separated):</label><br>
+    <input type="text" id="keywords" name="keywords" required><br><br>
+
+    <label for="genre">Genre:</label><br>
+    <input type="text" id="genre" name="genre"><br><br>
+
+    <label for="length">Length:</label><br>
+    <input type="int" id="length" name="length"><br><br> 
+
+    <button type="submit">Generate Playlist</button>
+</form>
+
+{% endblock %}
