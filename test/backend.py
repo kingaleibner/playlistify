@@ -1,5 +1,6 @@
 import random
 import requests
+import json
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
@@ -107,7 +108,7 @@ def search_songs(sp, seed_words, genres=None, length=20, randomness=0.1):
     print(f"Extended and filtered keywords: {all_keywords}")
 
     found_tracks = {}
-    while len(found_tracks) < min_length:  # Continue searching until we find at least `min_length` tracks
+    while len(found_tracks) < length:  # Continue searching until we find at least `min_length` tracks
         for word in all_keywords:
             # Build the query string
             query = f"{word}"
@@ -130,11 +131,11 @@ def search_songs(sp, seed_words, genres=None, length=20, randomness=0.1):
                 print(f"Error during search for word {word}: {e}")
 
             # Stop searching if we've already found the required number of tracks
-            if len(found_tracks) >= min_length:
+            if len(found_tracks) >= length:
                 break
 
     # If the number of tracks found is less than min_length, return only the found tracks
-    unique_tracks = list(found_tracks.items())[:min_length]  # Limit the number of tracks to min_length
+    unique_tracks = list(found_tracks.items())[:length]  # Limit the number of tracks to min_length
     print(f"Found {len(unique_tracks)} unique tracks.")
 
     # Return only track IDs for playlist creation
@@ -164,3 +165,55 @@ def save_tracks(sp, track_ids, playlist_name="Randomized Playlist"):
         print(f"Added {len(track_ids)} tracks to playlist '{playlist_name}'.")
     except Exception as e:
         print(f"Error saving playlist: {e}")
+
+
+def load_presets(json_path):
+    """
+    Loads presets from a JSON file.
+    
+    :param json_path: Path to the JSON file containing presets.
+    :return: Dictionary of presets.
+    """
+    try:
+        with open(json_path, 'r') as file:
+            data = json.load(file)
+        return data.get('presets', {})
+    except Exception as e:
+        print(f"Error loading presets: {e}")
+        return {}
+
+def use_preset(sp, preset_name, json_path="presets.json", length=20, randomness=0.1):
+    """
+    Uses a preset to search for songs and create a playlist.
+    
+    :param sp: Spotify API connection.
+    :param preset_name: Name of the preset to use.
+    :param json_path: Path to the JSON file containing presets.
+    :param min_length: Minimum number of tracks to include in the playlist.
+    :param randomness: Chance (from 0 to 1) for a track to be skipped.
+    """
+    presets = load_presets(json_path)
+    preset = presets.get(preset_name)
+    
+    if not preset:
+        print(f"Preset '{preset_name}' not found. Available presets: {', '.join(presets.keys())}")
+        return
+    
+    print(f"Using preset: {preset['name']}")
+    
+    # Extract seed words and genres from the preset
+    seed_words = preset.get('seed_words', [])
+    genres = preset.get('genres', [])
+    
+    # Find similar genres
+    try:
+        similar_genres = get_similar_genres(genres=genres) if genres else []
+    except ValueError as e:
+        print(e)
+        return
+    
+    # Search for songs
+    track_ids = search_songs(sp, seed_words, genres=similar_genres, length=length, randomness=randomness)
+    
+    # Save the tracks to a playlist
+    save_tracks(sp, track_ids, playlist_name=preset['name'])

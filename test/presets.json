@@ -1,0 +1,29 @@
+{
+    "presets": {
+      "sad": {
+        "name": "Sad Songs",
+        "seed_words": ["sad", "heartbreak", "melancholy"],
+        "genres": ["sad", "classical", "piano", "indie"]
+      },
+      "happy": {
+        "name": "Happy Vibes",
+        "seed_words": ["happy", "joyful", "uplifting"],
+        "genres": ["pop", "dance", "funk"]
+      },
+      "chill": {
+        "name": "Chill Music",
+        "seed_words": ["chill", "relax", "ambient"],
+        "genres": ["ambient", "chill", "lo-fi"]
+      },
+      "party": {
+        "name": "Party Time",
+        "seed_words": ["party", "dance", "celebration"],
+        "genres": ["dance", "edm", "club"]
+      },
+      "romance": {
+        "name": "Romantic Songs",
+        "seed_words": ["love", "romantic", "passion"],
+        "genres": ["romance", "pop", "r-n-b"]
+      }
+    }
+  }
