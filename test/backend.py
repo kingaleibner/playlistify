@@ -87,7 +87,7 @@ def get_similar_genres(input_genre=None, genre_file_path="genres.txt"):
     return filtered_genres
 
 
-def search_songs(sp, seed_words, genres=None, min_length=20, randomness=0.1):
+def search_songs(sp, seed_words, genres=None, length=20, randomness=0.1):
     """
     Searches for tracks on Spotify based on keywords and genres, ensuring uniqueness,
     slight randomness, and a minimum playlist length. Filters tracks with popularity > 50.
@@ -95,7 +95,7 @@ def search_songs(sp, seed_words, genres=None, min_length=20, randomness=0.1):
     :param sp: Spotify API connection.
     :param seed_words: List of keywords for search.
     :param genres: List of genres to include in the search. If None, no genre restriction.
-    :param min_length: Minimum number of tracks in the results.
+    :param length: Minimum number of tracks in the results.
     :param randomness: Chance (from 0 to 1) for a track to be skipped.
     :return: List of unique track IDs.
     """
@@ -107,7 +107,7 @@ def search_songs(sp, seed_words, genres=None, min_length=20, randomness=0.1):
     print(f"Extended and filtered keywords: {all_keywords}")
 
     found_tracks = {}
-    while len(found_tracks) < min_length:  # Continue searching until we find at least `min_length` tracks
+    while len(found_tracks) < length:  # Continue searching until we find at least `length` tracks
         for word in all_keywords:
             # Build the query string
             query = f"{word}"
@@ -130,11 +130,11 @@ def search_songs(sp, seed_words, genres=None, min_length=20, randomness=0.1):
                 print(f"Error during search for word {word}: {e}")
 
             # Stop searching if we've already found the required number of tracks
-            if len(found_tracks) >= min_length:
+            if len(found_tracks) >= length:
                 break
 
-    # If the number of tracks found is less than min_length, return only the found tracks
-    unique_tracks = list(found_tracks.items())[:min_length]  # Limit the number of tracks to min_length
+    # If the number of tracks found is less than length, return only the found tracks
+    unique_tracks = list(found_tracks.items())[:length]  # Limit the number of tracks to length
     print(f"Found {len(unique_tracks)} unique tracks.")
 
     # Return only track IDs for playlist creation
@@ -177,7 +177,7 @@ if __name__ == "__main__":
         print(f"Filtered genres: {filtered_genres if filtered_genres else 'No genre restriction'}")
 
         # Fetch unique tracks based on keywords and genres
-        tracks = search_songs(sp, user_keywords, genres=filtered_genres, min_length=20)
+        tracks = search_songs(sp, user_keywords, genres=filtered_genres, length=20)
         print(f"Fetched {len(tracks)} unique tracks.")
 
         # Create a playlist with the fetched tracks
