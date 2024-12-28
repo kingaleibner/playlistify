@@ -1,29 +1,54 @@
 {
-    "presets": {
-      "sad": {
-        "name": "Sad Songs",
-        "seed_words": ["sad", "heartbreak", "melancholy"],
-        "genres": ["sad", "classical", "piano", "indie"]
-      },
-      "happy": {
-        "name": "Happy Vibes",
-        "seed_words": ["happy", "joyful", "uplifting"],
-        "genres": ["pop", "dance", "funk"]
-      },
-      "chill": {
-        "name": "Chill Music",
-        "seed_words": ["chill", "relax", "ambient"],
-        "genres": ["ambient", "chill", "lo-fi"]
-      },
-      "party": {
-        "name": "Party Time",
-        "seed_words": ["party", "dance", "celebration"],
-        "genres": ["dance", "edm", "club"]
-      },
-      "romance": {
-        "name": "Romantic Songs",
-        "seed_words": ["love", "romantic", "passion"],
-        "genres": ["romance", "pop", "r-n-b"]
-      }
+  "presets": {
+    "sad": {
+      "name": "Sad Songs",
+      "seed_words": ["sad", "heartbreak", "melancholy", "lonely", "tears", "shadows", "goodbye"],
+      "genres": ["sad", "classical", "piano", "indie", "blues", "emo", "goth", "acoustic", "singer-songwriter", "ambient"]
+    },
+    "happy": {
+      "name": "Happy Vibes",
+      "seed_words": ["happy", "joyful", "uplifting", "sunshine", "smile", "love", "joy", "free"],
+      "genres": ["happy", "indie-pop", "funk", "pop", "britpop", "dance", "synth-pop"]
+    },
+    "chill": {
+      "name": "Chill Music",
+      "seed_words": ["chill", "relax", "ambient", "breeze", "calm", "ocean", "dream"],
+      "genres": ["chill", "ambient", "bossanova", "lounge", "acoustic", "indie", "lo-fi"]
+    },
+    "party": {
+      "name": "Party Time",
+      "seed_words": ["party", "dance", "celebration", "dancefloor", "lights", "beat", "night", "fire"],
+      "genres": ["dance", "edm", "house", "disco", "club", "party", "reggaeton"]
+    },
+    "romance": {
+      "name": "Romantic Songs",
+      "seed_words": ["love", "romantic", "passion", "kiss", "forever", "heart", "moonlight", "desire"],
+      "genres": ["romance", "soul", "mpb", "r-n-b", "jazz", "acoustic", "bossanova"]
+    },
+    "angry": {
+      "name": "Breaking Windows",
+      "seed_words": ["rage", "destruction", "chaos", "scream", "fight"],
+      "genres": ["hardcore", "grindcore", "death-metal", "black-metal", "punk-rock", "metalcore", "industrial"]
+    },
+    "dance": {
+      "name": "Dance Fever",
+      "seed_words": ["rhythm", "move", "spin", "energy", "groove"],
+      "genres": ["dance", "disco", "electro", "edm", "house", "techno", "trance"]
+    },
+    "rainy": {
+      "name": "Rainy Day Vibes",
+      "seed_words": ["rain", "grey", "memory", "window", "silence"],
+      "genres": ["rainy-day", "piano", "jazz", "ambient", "folk", "lo-fi", "classical"]
+    },
+    "workout": {
+      "name": "Workout Beats",
+      "seed_words": ["power", "strong", "burn", "run", "energy"],
+      "genres": ["work-out", "drum-and-bass", "dubstep", "hip-hop", "edm", "hardstyle", "progressive-house"]
+    },
+    "Disney": {
+      "name": "Inner Child",
+      "seed_words": ["friend", "love", "fun", "play", "magic"],
+      "genres": ["Disney"]
     }
   }
+}
