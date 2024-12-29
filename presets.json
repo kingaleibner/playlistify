@@ -13,7 +13,7 @@
     "chill": {
       "name": "Chill Music",
       "seed_words": ["chill", "relax", "ambient", "breeze", "calm", "ocean", "dream"],
-      "genres": ["chill", "ambient", "bossanova", "lounge", "acoustic", "indie", "lo-fi"]
+      "genres": ["chill", "ambient", "bossanova", "acoustic", "indie"]
     },
     "party": {
       "name": "Party Time",
