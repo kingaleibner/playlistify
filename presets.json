@@ -38,7 +38,7 @@
     "rainy": {
       "name": "Rainy Day Vibes",
       "seed_words": ["rain", "grey", "memory", "window", "silence"],
-      "genres": ["rainy-day", "piano", "jazz", "ambient", "folk", "lo-fi", "classical"]
+      "genres": ["rainy-day", "piano", "jazz", "ambient", "folk", "classical"]
     },
     "workout": {
       "name": "Workout Bea(s)ts",
