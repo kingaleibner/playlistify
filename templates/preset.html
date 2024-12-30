@@ -3,37 +3,29 @@
 {% block content %}
 <header>
     <div class="header-content">
-        <div class="header-content-inner">
-            <h1>Playlistify</h1>
-            <p>Kilka kliknięć by odetchnąć</p>
-            
-            <!-- Length form -->
-            <form action="/use_preset" method="POST">
-                <label for="length">Length:</label><br>
-                <input type="int" id="length" name="length"><br><br> 
 
+            <h1><span style="color: rgb(38, 5, 57)">Playlistify</span></h1>
+            <p>Just click it</p>
+
+            <!-- Length form -->
+            <form action="/use_preset" method="POST" >
+                <label for="length">Amount of songs:</label><br>
+                <input type="number" id="length" name="length">
+                <p>20 if empty</p>
                 <!-- Preset buttons -->
-                <button type="submit" name="preset" value="sad">Submit Sad</button>
+                <div class="btn-grid">
                 
-                <button type="submit" name="preset" value="happy">Submit Happy</button>
-                
-                <button type="submit" name="preset" value="chill">Submit Chill</button>
-                
-                <button type="submit" name="preset" value="party">Submit Party</button>
-                
-                <button type="submit" name="preset" value="romance">Submit Romance</button>
-                
-                <button type="submit" name="preset" value="angry">Submit Angry</button>
-                
-                <button type="submit" name="preset" value="dance">Submit Dance</button>
-                
-                <button type="submit" name="preset" value="rainy">Submit Rainy</button>
-                
-                <button type="submit" name="preset" value="workout">Submit Workout</button>
-                
-                <button type="submit" name="preset" value="Disney">Submit Disney</button>
+                <button type="submit" class="btn btn-primary btn-lg sad" name="preset" value="sad">Sad Songs</button>
+                <button type="submit" class="btn btn-primary btn-lg happy" name="preset" value="happy">Happy Vibes</button>
+                <button type="submit" class="btn btn-primary btn-lg chill" name="preset" value="chill">Chill Music</button>
+                <button type="submit" class="btn btn-primary btn-lg party" name="preset" value="party">Party Time</button>
+                <button type="submit" class="btn btn-primary btn-lg romance" name="preset" value="romance">Romantic Songs</button>
+                <button type="submit" class="btn btn-primary btn-lg angry" name="preset" value="angry">Breaking Windows</button>
+                <button type="submit" class="btn btn-primary btn-lg dance" name="preset" value="dance">Dance Fever</button>
+                <button type="submit" class="btn btn-primary btn-lg rainy" name="preset" value="rainy">Rainy Day Vibes</button>
+                <button type="submit" class="btn btn-primary btn-lg workout" name="preset" value="workout">Workout Bea(s)ts</button>
+                </div>
             </form>
         </div>
-    </div>
 </header>
 {% endblock %}
