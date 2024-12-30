@@ -1,50 +1,19 @@
-.slidecontainer {
-    width: 100%;
-}
+input {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #392034b4;
+    color: white;
+    text-align: center;
+  }
 
-.slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 10px;
-    background: #ca79ca;
-    outline: invert;
-    opacity: 0.2;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-    cursor: not-allowed; /* domyślny kursor dla wyłączonych */
-}
-
-.slider:enabled {
-    cursor: pointer; /* zmienia kursor po aktywacji */
-    opacity: 0.6;
-}
-
-.slider:hover:enabled {
-    opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #381042;
-    cursor: not-allowed;
-}
-    
-.slider:enabled.slider::-webkit-slider-thumb {
-    cursor: pointer; /* zmienia kursor po aktywacji */
-}
-
-
-
-
-
-
-
-
-
-
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
 
 .grid-container {
     display: grid;
@@ -53,42 +22,6 @@
     max-width: 1200px;
     margin: auto;
   }
-
-  .grid-container2 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
-    max-width: 1200px;
-    margin: auto;
-  }
-
-output {
-    margin-top: 10px;
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-
-
-  
-
-
-.row {
-    display: flex;
-    gap: 10px; /* Odstęp między przyciskami w wierszu */
-}
-
-.lower {
-    margin-top: 15px; /* Odstęp pomiędzy górnym a dolnym rzędem */
-}
-
-
-
-.intro {
-	color: #fff;
-    background-color: rgb(51, 8, 99);
-    padding: 70px 0;
-    text-align: center;
-}
 
 header {
     position: relative;
@@ -104,10 +37,6 @@ header {
     -o-background-size: cover;
 }
 
-.section-heading {
-    margin-top: 0;
-    margin-bottom: 20px;
-}
 
 header .header-content {
     position: relative;
@@ -161,10 +90,23 @@ header .header-content .header-content-inner p {
         font-size: 18px;
     }
 }
-/* przyciski */
+/* buttons */
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    padding: 15px; /
+}
+
 .btn-primary {
     border-color: rgb(125, 71, 187);
     color: #fff;
+    width: 220;
+    margin: 10px auto;
+    padding: 10px 15px;
+    display: inline-block;
+    text-align: center;
     background-color: rgb(125, 71, 187);
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
@@ -183,298 +125,98 @@ header .header-content .header-content-inner p {
     background-color: rgb(80, 36, 131);
 }
 
-
-.btn-2 {
-    border-color: rgb(233, 95, 15);
-    background-color: rgb(233, 95, 15);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+.sad {
+    background-color: #2F2A44;
+    border-color: #272237;
 }
 
-.btn-2:hover,
-.btn-2:focus,
-.btn-2.focus,
-.btn-2:active,
-.btn-2.active,
-.open > .dropdown-toggle.btn-2 {
-    border-color: rgb(145, 64, 17);
-    color: #fff;
-    background-color: rgb(145, 64, 17);
+.sad:hover {
+    background-color: #4d456d; 
+    border-color: #3e3759;
 }
 
-.btn-3 {
-    border-color: rgb(52, 152, 219);
-    color: #fff;
-    background-color: rgb(52, 152, 219);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+.happy {
+    background-color: #debd00;
+    border-color: #c7a900;
 }
 
-.btn-3:hover,
-.btn-3:focus,
-.btn-3.focus,
-.btn-3:active,
-.btn-3.active,
-.open > .dropdown-toggle.btn-3 {
-    border-color: rgb(41, 128, 185);
-    color: #fff;
-    background-color: rgb(40, 116, 166);
+.happy:hover {
+    background-color: #9f8700;
+    border-color: #957f00;
+}
+
+.chill {
+    background-color: #A8DADC;
+    border-color: #86b2b3;
+}
+
+.chill:hover {
+    background-color: #83abad;
+    border-color: #6a8b8c;
 }
 
 
-
-.btn-4 {
-    border-color: rgb(46, 204, 113);
-    color: #fff;
-    background-color: rgb(46, 204, 113);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+.party {
+    background-color: #FF6347; 
+    border-color: #e55347; 
 }
 
-.btn-4:hover,
-.btn-4:focus,
-.btn-4.focus,
-.btn-4:active,
-.btn-4.active,
-.open > .dropdown-toggle.btn-4 {
-    border-color: rgb(39, 174, 96);
-    color: #fff;
-    background-color: rgb(33, 136, 75);
+.party:hover {
+    background-color: #c73e0d; 
+    border-color: #b13707;
 }
 
 
-
-.btn-5 {
-    border-color: rgb(241, 196, 15);
-    color: #fff;
-    background-color: rgb(241, 196, 15);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+.romance {
+    background-color: #FFB6C1;
+    border-color: #f7a3b0; 
 }
 
-.btn-5:hover,
-.btn-5:focus,
-.btn-5.focus,
-.btn-5:active,
-.btn-5.active,
-.open > .dropdown-toggle.btn-5 {
-    border-color: rgb(243, 156, 18);
-    color: #fff;
-    background-color: rgb(243, 175, 10);
+.romance:hover {
+    background-color: #ff9db4;
+    border-color: #f68e9f; 
 }
 
 
-.btn-6 {
-    border-color: rgb(125, 71, 187);
-    color: #fff;
-    background-color: rgb(125, 71, 187);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+.angry {
+    background-color: #D32F2F;
+    border-color: #b32929;
 }
 
-.btn-6:hover,
-.btn-6:focus,
-.btn-6.focus,
-.btn-6:active,
-.btn-6.active,
-.open > .dropdown-toggle.btn-6 {
-    border-color: rgb(231, 76, 60);
-    color: #fff;
-    background-color: rgb(231, 76, 60);
+.angry:hover {
+    background-color: #5f1111; 
+    border-color: #4c0c0c;
 }
 
 
-
-
-.btn-7 {
-    border-color: rgb(231, 76, 60);
-    color: #fff;
-    background-color: rgb(231, 76, 60);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+.dance {
+    background-color: #FF1493;
+    border-color: #e6008c;
 }
 
-.btn-7:hover,
-.btn-7:focus,
-.btn-7.focus,
-.btn-7:active,
-.btn-7.active,
-.open > .dropdown-toggle.btn-7 {
-    border-color: rgb(192, 57, 43);
-    color: #fff;
-    background-color: rgb(173, 50, 38);
+.dance:hover {
+    background-color: #d71c77;
+    border-color: #960359; 
 }
 
 
-
-.btn-8 {
-    border-color: rgb(155, 89, 182);
-    color: #fff;
-    background-color: rgb(155, 89, 182);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+.rainy {
+    background-color: #708090;
+    border-color: #5f6c74; 
 }
 
-.btn-8:hover,
-.btn-8:focus,
-.btn-8.focus,
-.btn-8:active,
-.btn-8.active,
-.open > .dropdown-toggle.btn-8 {
-    border-color: rgb(142, 68, 173);
-    color: #fff;
-    background-color: rgb(142, 68, 173);
+.rainy:hover {
+    background-color: #475759; 
+    border-color: #4e585e; 
 }
 
 
-.btn-9 {
-    border-color: rgb(125, 71, 187);
-    color: #fff;
-    background-color: rgb(125, 71, 187);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+.workout {
+    background-color: #32CD32; 
+    border-color: #2e8b57; 
 }
 
-.btn-9:hover,
-.btn-9:focus,
-.btn-9.focus,
-.btn-9:active,
-.btn-9.active,
-.open > .dropdown-toggle.btn-9 {
-    border-color: rgb(74, 34, 119);
-    color: #fff;
-    background-color: rgb(80, 36, 131);
-}
-
-
-.btn-10 {
-    border-color: rgb(125, 71, 187);
-    color: #fff;
-    background-color: rgb(125, 71, 187);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-}
-
-.btn-10:hover,
-.btn-10:focus,
-.btn-10.focus,
-.btn-10:active,
-.btn-10.active,
-.open > .dropdown-toggle.btn-10 {
-    border-color: rgb(74, 34, 119);
-    color: #fff;
-    background-color: rgb(80, 36, 131);
-}
-
-
-.btn-11 {
-    border-color: rgb(125, 71, 187);
-    color: #fff;
-    background-color: rgb(125, 71, 187);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-}
-
-.btn-11:hover,
-.btn-11:focus,
-.btn-11.focus,
-.btn-11:active,
-.btn-11.active,
-.open > .dropdown-toggle.btn-11 {
-    border-color: rgb(74, 34, 119);
-    color: #fff;
-    background-color: rgb(80, 36, 131);
-}
-
-
-.btn-12 {
-    border-color: rgb(125, 71, 187);
-    color: #fff;
-    background-color: rgb(125, 71, 187);
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all 1s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-}
-
-.btn-12:hover,
-.btn-12:focus,
-.btn-12.focus,
-.btn-12:active,
-.btn-12.active,
-.open > .dropdown-toggle.btn-12 {
-    border-color: rgb(74, 34, 119);
-    color: #fff;
-    background-color: rgb(80, 36, 131);
-}
-
-/* idk co to za czesc
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-    background-image: none;
-}
-
-
-.btn-primary.disabled,
-.btn-primary[disabled],
-fieldset[disabled] .btn-primary,
-.btn-primary.disabled:hover,
-.btn-primary[disabled]:hover,
-fieldset[disabled] .btn-primary:hover,
-.btn-primary.disabled:focus,
-.btn-primary[disabled]:focus,
-fieldset[disabled] .btn-primary:focus,
-.btn-primary.disabled.focus,
-.btn-primary[disabled].focus,
-fieldset[disabled] .btn-primary.focus,
-.btn-primary.disabled:active,
-.btn-primary[disabled]:active,
-fieldset[disabled] .btn-primary:active,
-.btn-primary.disabled.active,
-.btn-primary[disabled].active,
-fieldset[disabled] .btn-primary.active {
-    border-color: rgb(80, 36, 131);
-    background-color: rgb(80, 36, 131);
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.5;
-    color: rgb(54, 4, 87)
-}
-*/
-.content {
-    padding: 100px 0;
+.workout:hover {
+    background-color: #2e8b57; 
+    border-color: #256e3b; 
 }
