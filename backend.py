@@ -19,7 +19,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
 ))
 
 
-def get_related_words(word, lang='en', min_weight=0.4):
+def get_related_words(word, lang='en', min_weight=0.55):
     """
     Fetches related words for a given word from ConceptNet, excluding antonyms
     and keeping only words in the specified language.
@@ -135,19 +135,18 @@ def search_songs(sp, seed_words, genres=None, length=None, randomness=0.1):
     :param randomness: Chance (from 0 to 1) for a track to be skipped.
     :return: List of unique track IDs.
     """
-    # Set default playlist length to 20 if not provided
     if not length: 
         length = 20
     else:
         length = int(length)
 
     # Generate all related keywords
-    all_keywords = set(seed_words)
+    all_keywords = list(set(seed_words))  # Convert to list for indexing
     for word in seed_words:
         related_words = get_related_words(word)
-        all_keywords.update(related_words)
-
-    print(f"Extended and filtered keywords: {all_keywords}")
+        all_keywords.extend(related_words)
+    all_keywords = list(set(all_keywords))  # Remove duplicates
+    print(f"[INFO] Extended and filtered keywords: {all_keywords}")
 
     # Generate all related genres
     all_genres = set()
@@ -156,43 +155,53 @@ def search_songs(sp, seed_words, genres=None, length=None, randomness=0.1):
             related_genres = get_similar_genres(genre)
             all_genres.update(related_genres)
 
-    print(f"Extended and filtered genres: {all_genres}")
+    print(f"[INFO] Extended and filtered genres: {all_genres}")
 
     found_tracks = {}
-    while len(found_tracks) < length:  # Continue searching until we find at least `length` tracks
-        for word in all_keywords:
-            # Build the query string
-            query = f"{word}"
-            if genres:
-                random_genre = random.choice(list(all_genres)) if all_genres else None
-                if random_genre:
-                    query += f" genre:{random_genre}"
-            try:
-                results = sp.search(q=query, type='track', limit=10)
-                for track in results['tracks']['items']:
-                    track_id = track['id']
-                    popularity = track['popularity'] / 100  # Convert to 0-1 range
-                    # Add randomization to skip some tracks
-                    if (track_id not in found_tracks and popularity > 0.5 
-                            and random.random() > randomness):
-                        found_tracks[track_id] = {
-                            'name': track['name'],
-                            'artist': track['artists'][0]['name'],
-                            'popularity': popularity
-                        }
-            except Exception as e:
-                print(f"Error during search for word {word}: {e}")
+    keyword_usage = {keyword: 0 for keyword in all_keywords}  # Track how often each keyword is used
 
-            # Stop searching if we've already found the required number of tracks
-            if len(found_tracks) >= length:
-                break
-        # Break the loop if we've already found enough tracks
+    while len(found_tracks) < length:
+        # Randomly pick a keyword for this iteration, biasing towards less-used keywords
+        word = random.choices(
+            population=all_keywords,
+            weights=[1 / (1 + keyword_usage[w]) for w in all_keywords],  # Less-used keywords get higher weight
+            k=1
+        )[0]
+        keyword_usage[word] += 1  # Increment usage for the selected keyword
+
+        # Build the query string
+        query = f"{word}"
+        if genres:
+            random_genre = random.choice(list(all_genres)) if all_genres else None
+            if random_genre:
+                query += f" genre:{random_genre}"
+        print(f"[INFO] Searching for tracks with query: {query}")
+        try:
+            results = sp.search(q=query, type='track', limit=10)
+            print(f"[INFO] Found {len(results['tracks']['items'])} tracks for query: {query}")
+            for track in results['tracks']['items']:
+                track_id = track['id']
+                popularity = track['popularity'] / 100  # Convert to 0-1 range
+                # Add randomization to skip some tracks
+                if (track_id not in found_tracks and popularity > 0.3
+                        and random.random() > randomness):
+                    found_tracks[track_id] = {
+                        'name': track['name'],
+                        'artist': track['artists'][0]['name'],
+                        'popularity': popularity
+                    }
+                    print(f"[TRACK FOUND] Track '{track['name']}' by {track['artists'][0]['name']} added.")
+        except Exception as e:
+            print(f"[ERROR] Error during search for word '{word}': {e}")
+
+        # Stop searching if we've already found the required number of tracks
         if len(found_tracks) >= length:
+            print("[INFO] Required number of tracks found. Stopping search.")
             break
 
     # If the number of tracks found is less than length, return only the found tracks
     unique_tracks = list(found_tracks.items())[:length]  # Limit the number of tracks to length
-    print(f"Found {len(unique_tracks)} unique tracks.")
+    print(f"[SUMMARY] Found {len(unique_tracks)} unique tracks out of {length} requested.")
 
     # Return only track IDs for playlist creation
     return [track_id for track_id, _ in unique_tracks]

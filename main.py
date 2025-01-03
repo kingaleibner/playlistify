@@ -25,10 +25,11 @@ def create_playlist():
 
     # Przetwórz dane
     keyword_list = [k.strip() for k in keywords.split(',')]
+    genre_list = genre.split(",")
 
     try:
         # Wyszukaj utwory
-        track_ids = search_songs(sp, seed_words=keyword_list, genres=genre, length=length)
+        track_ids = search_songs(sp, seed_words=keyword_list, genres=genre_list, length=length)
 
         # Zapisz playlistę na Spotify
         playlist_name = "User Generated Playlist"
