@@ -18,20 +18,20 @@ def create():
 
 @app.route('/create_playlist', methods=['POST'])
 def create_playlist():
-    # Pobierz dane z formularza
+    # Get data from form
     keywords = request.form['keywords']
     genre = request.form['genre']
     length = request.form['length']
 
-    # Przetwórz dane
+    # Process data
     keyword_list = [k.strip() for k in keywords.split(',')]
     genre_list = genre.split(",")
 
     try:
-        # Wyszukaj utwory
+        # Search songs
         track_ids = search_songs(sp, seed_words=keyword_list, genres=genre_list, length=length)
 
-        # Zapisz playlistę na Spotify
+        # Save playlist on Spotify
         playlist_name = "User Generated Playlist"
         save_tracks(sp, track_ids, playlist_name=playlist_name)
 
@@ -47,7 +47,7 @@ def use_presetflask():
     length=request.form['length']
 
     try:
-        # Wyszukaj preset
+        # Search preset
         use_preset(sp, preset_name=preset, json_path="presets.json", length=length, randomness=0.1)
 
         return render_template ("congrats.html") #f"Playlist '{playlist_name}' created successfully with {len(track_ids)} tracks!"
