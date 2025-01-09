@@ -126,7 +126,7 @@ def get_similar_genres(input_genre=None, genre_file_path="genres.txt"):
 def search_songs(sp, seed_words, genres=None, length=None, randomness=0.1):
     """
     Searches for tracks on Spotify based on keywords and genres, ensuring uniqueness,
-    slight randomness, and a minimum playlist length. Filters tracks with popularity > 50.
+    slight randomness, and a minimum playlist length. Filters tracks with popularity > 30.
     
     :param sp: Spotify API connection.
     :param seed_words: List of keywords for search.
