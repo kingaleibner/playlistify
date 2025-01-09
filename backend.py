@@ -127,7 +127,8 @@ def search_songs(sp, seed_words, genres=None, length=None, randomness=0.1):
     """
     Searches for tracks on Spotify based on keywords and genres, ensuring uniqueness,
     slight randomness, and a minimum playlist length. Filters tracks with popularity > 30.
-    
+    Includes a timeout to prevent infinite search loops.
+
     :param sp: Spotify API connection.
     :param seed_words: List of keywords for search.
     :param genres: List of genres to include in the search. If None, no genre restriction.
@@ -159,8 +160,17 @@ def search_songs(sp, seed_words, genres=None, length=None, randomness=0.1):
 
     found_tracks = {}
     keyword_usage = {keyword: 0 for keyword in all_keywords}  # Track how often each keyword is used
+    max_attempts = 2 * length
+    attempts = 0  # Counter for search attempts
 
     while len(found_tracks) < length:
+        if attempts >= max_attempts:
+            print(f"[TIMEOUT] Maximum search attempts ({max_attempts}) reached. Returning partial results.")
+            break
+
+        # Increment the attempts counter
+        attempts += 1
+
         # Randomly pick a keyword for this iteration, biasing towards less-used keywords
         word = random.choices(
             population=all_keywords,
