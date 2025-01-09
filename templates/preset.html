@@ -3,18 +3,14 @@
 {% block content %}
 <header>
     <div class="header-content">
-
             <h1><span style="color: rgb(38, 5, 57)">Playlistify</span></h1>
             <p>Just click it</p>
-
-            <!-- Length form -->
             <form action="/use_preset" method="POST" >
                 <label for="length">Number of songs:</label><br>
                 <input type="number" id="length" name="length">
                 <p>20 if empty</p>
                 <!-- Preset buttons -->
                 <div class="btn-grid">
-                
                 <button type="submit" class="btn btn-primary btn-lg sad" name="preset" value="sad">Sad Songs</button>
                 <button type="submit" class="btn btn-primary btn-lg happy" name="preset" value="happy">Happy Vibes</button>
                 <button type="submit" class="btn btn-primary btn-lg chill" name="preset" value="chill">Chill Music</button>
