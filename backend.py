@@ -118,7 +118,6 @@ def get_similar_genres(input_genre=None, genre_file_path="genres.txt"):
 
     # If no similar genres are found, return the input genre itself if valid
     if not filtered_genres:
-        #raise ValueError(f"The genre '{input_genre}' is not available on Spotify.")
         return []
     return sorted(filtered_genres)
 
